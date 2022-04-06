@@ -60,4 +60,13 @@ public class Employee {
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
     }
+
+    public void setEmployee(Employee employee){
+        setEmployeeId(employee.getEmployeeId());
+        setFirstName(employee.getFirstName());
+        setLastName(employee.getLastName());
+        setPosition(employee.getPosition());
+        setDepartment(employee.getDepartment());
+        setDirectReports(employee.getDirectReports());
+    }
 }
