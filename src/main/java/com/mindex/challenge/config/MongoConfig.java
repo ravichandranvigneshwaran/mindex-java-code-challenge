@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackageClasses = {EmployeeRepository.class, CompensationRepository.class})
 @Configuration
 public class MongoConfig{
-    // NOTE: Prinmary implmementation of MongoOperations interface where are basic set of MongoDB operation can be performed
+    // NOTE: Primary implementation of MongoOperations interface where are basic set of MongoDB operation can be performed
     @Bean
     public MongoTemplate mongoTemplate(MongoClient mongoClient) {
         return new MongoTemplate(mongoDbFactory(mongoClient));
@@ -29,7 +29,7 @@ public class MongoConfig{
         return new SimpleMongoClientDbFactory(mongoClient, "test");
     }
 
-    // NOTE: Default meomorybackend for faking MongoDB for testing
+    // NOTE: Default memory backend for faking MongoDB for testing
     @Bean(destroyMethod="shutdown")
     public MongoServer mongoServer() {
         MongoServer mongoServer = new MongoServer(new MemoryBackend());
