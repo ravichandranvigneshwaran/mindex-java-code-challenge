@@ -1,5 +1,6 @@
 package com.mindex.challenge.config;
 
+import com.mindex.challenge.dao.CompensationRepository;
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -13,7 +14,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 // NOTE: Enables MongoDB for the class
-@EnableMongoRepositories(basePackageClasses = EmployeeRepository.class)
+@EnableMongoRepositories(basePackageClasses = {EmployeeRepository.class, CompensationRepository.class})
 @Configuration
 public class MongoConfig{
     // NOTE: Prinmary implmementation of MongoOperations interface where are basic set of MongoDB operation can be performed
