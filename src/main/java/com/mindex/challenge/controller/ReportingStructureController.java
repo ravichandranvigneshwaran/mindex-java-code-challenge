@@ -9,14 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+//Note: In Spring boot Controller is used for processing request till returning the request
+
+//Note: this tells that the class is a controller
 @RestController
 public class ReportingStructureController {
-    private static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ReportingStructureController.class);
 
-    // NOTE: It is a constructor where data is passed from controller to service
+    // NOTE: This annotation where lifecycle is passed from controller to service
     @Autowired
     private ReportingStructureService reportingStructureService;
 
+    // Note: this annotations for GET Method helps the controller to forward the url pattern to the method.
+    // USAGE: For getting only one data based on the id from the entity
     @GetMapping("/reportingStructure/{id}")
     public Employee getEmployeeDetails(@PathVariable String id) {
         LOG.debug("Received employee create request for id [{}]", id);

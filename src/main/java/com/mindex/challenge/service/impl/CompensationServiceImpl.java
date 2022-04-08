@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CompensationServiceImpl implements CompensationService {
+
+    // NOTE: This annotation where lifecycle is passed from service to repository
     @Autowired
     private CompensationRepository compensationRepository;
 
+    //NOTE: Overriding the service method
     @Override
     public Compensation createCompensation(Compensation compensation) {
         return compensationRepository.insert(compensation);

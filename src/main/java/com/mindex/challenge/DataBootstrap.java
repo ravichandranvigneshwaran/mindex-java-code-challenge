@@ -30,15 +30,20 @@ public class DataBootstrap {
 
     @PostConstruct
     public void init() {
+        // NOTE: inputStream declaration for reading the json
         InputStream inputStream = this.getClass().getResourceAsStream(DATASTORE_LOCATION);
 
+        //NOTE: Logger variable declaration
         final Logger LOG = LoggerFactory.getLogger(DataBootstrap.class);
 
+        // NOTE: inputStream declaration for reading the json
         InputStream compensationInputStream = this.getClass().getResourceAsStream(COMPENSATION_DATASTORE_LOCATION);
 
+        //NOTE: Variable declaration
         Employee[] employees = null;
         Compensation[] compensations = null;
 
+        //NOTE: creating basic data for the Employee entity from the JSON
         try {
             employees = objectMapper.readValue(inputStream, Employee[].class);
         } catch (IOException e) {
@@ -49,6 +54,7 @@ public class DataBootstrap {
             employeeRepository.insert(employee);
         }
 
+        //NOTE: creating basic data for the Compensation entity from the JSON
         try {
             compensations = objectMapper.readValue(compensationInputStream, Compensation[].class);
         } catch (IOException e) {

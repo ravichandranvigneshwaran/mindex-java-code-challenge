@@ -3,6 +3,8 @@ package com.mindex.challenge.data;
 import java.util.List;
 
 public class Employee {
+
+    //NOTE: Variable declaration for the class
     private String employeeId;
     private String firstName;
     private String lastName;
@@ -10,9 +12,11 @@ public class Employee {
     private String department;
     private List<Employee> directReports;
 
+    //NOTE: Constructor for the class
     public Employee() {
     }
 
+    // Getters and Setters for the class
     public String getEmployeeId() {
         return employeeId;
     }

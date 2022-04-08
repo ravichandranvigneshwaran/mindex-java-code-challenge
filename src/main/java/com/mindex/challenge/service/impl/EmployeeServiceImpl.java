@@ -12,10 +12,14 @@ import java.util.UUID;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
+    //NOTE: Logger variable declaration
     private static final Logger LOG = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
+    // NOTE: This annotation where lifecycle is passed from service to repository
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    //NOTE: Overriding the service method
 
     @Override
     public Employee create(Employee employee) {

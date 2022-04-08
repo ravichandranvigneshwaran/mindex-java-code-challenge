@@ -11,10 +11,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document(collection = "Compensation")
 public class Compensation extends Employee{
+
+    //NOTE: Variable declaration for the class
     private Employee employee;
     private int salary;
     private String effectiveDate;
 
+    //NOTE: Getters and setters for the class
     public int getSalary() {
         return salary;
     }

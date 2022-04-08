@@ -15,8 +15,11 @@ import org.springframework.stereotype.Service;
 public class ReportingStructureImpl implements ReportingStructureService, EmployeeService {
     private static final Logger LOG = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
+    // NOTE: This annotation where lifecycle is passed from service to repository
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    // NOTE: This method helps to find the count for the direct report count
 
     public void directReportGenerator(Employee employee,ReportingStructure reportingStructure){
         reportingStructure.addTotalDirectReports(employee);
@@ -28,31 +31,33 @@ public class ReportingStructureImpl implements ReportingStructureService, Employ
            }
     }
 
+    //NOTE: Overriding the service method
+
     @Override
     public ReportingStructure getEmployeeDetails(String id) {
         LOG.debug("Get employee details for this id [{}]", id);
 
-        ReportingStructure employee2 = new ReportingStructure();
+        ReportingStructure reportingStructureEmployee = new ReportingStructure();
 
         Employee employee = employeeRepository.findByEmployeeId(id);
 
         if (employee == null) {
             throw new RuntimeException("employeeId not found id value is: " + id);
         }
-        if(!employee2.getTotalDirectReports().isEmpty()) {
-            employee2.emptyTotalDirectReports();
+        if(!reportingStructureEmployee.getTotalDirectReports().isEmpty()) {
+            reportingStructureEmployee.emptyTotalDirectReports();
         }
 
         if(employee.getDirectReports() != null && !employee.getDirectReports().isEmpty()){
             for (int itr = 0; itr < employee.getDirectReports().size(); itr++) {
 
-                directReportGenerator(employee.getDirectReports().get(itr), employee2);
+                directReportGenerator(employee.getDirectReports().get(itr), reportingStructureEmployee);
             }
         }
-        employee2.setSuperEmployee(employee);
-        employee2.updateNumberOfReports();
+        reportingStructureEmployee.setSuperEmployee(employee);
+        reportingStructureEmployee.updateNumberOfReports();
 
-        return employee2;
+        return reportingStructureEmployee;
     }
 
     @Override
